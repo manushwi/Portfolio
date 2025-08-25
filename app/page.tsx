@@ -354,7 +354,7 @@ const Portfolio: React.FC = () => {
 
               <div className="space-y-3 sm:space-y-4 text-gray-800 dark:text-gray-300">
                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                  I'm just a guy who codes like he's running out of
+                  I&apos;m just a guy who codes like he's running out of
                   time—because maybe I am. No grand destiny, no chosen
                   one—just me, a deadline, and the will to win.
                 </p>
@@ -363,7 +363,7 @@ const Portfolio: React.FC = () => {
                   too good.
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                  I'm{" "}
+                  I&apos;m{" "}
                   <span className="italic font-medium">
                     a man of hundred hobbies (with the latest one being chess)
                   </span>
