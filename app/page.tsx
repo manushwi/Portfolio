@@ -98,11 +98,12 @@ const Navigation: React.FC = () => {
 const ProfileCard: React.FC = () => {
   return (
     <div className="relative flex justify-center lg:justify-end">
+      
       <div className="bg-white scale-100 sm:scale-110 lg:scale-150 relative lg:top-1/2 dark:bg-gray-700 p-3 rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
         <div className="w-32 h-40 sm:w-40 sm:h-48 lg:w-48 lg:h-56 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-500 rounded flex items-center justify-center">
           <div className="w-full h-full bg-gray-400 dark:bg-gray-500 flex items-center justify-center text-white text-xs">
             <Image
-              src="/myGhibli.png"
+              src="/myGhibli.jpg"
               alt="Profile picture"
               width={192}
               height={224}
@@ -537,7 +538,7 @@ const Portfolio: React.FC = () => {
                       size={16}
                     />
                     <span className="text-xs sm:text-sm text-gray-800 dark:text-gray-300 break-all">
-                      manushwiraj@gmail.com
+                      manushwi.work@gmail.com
                     </span>
                   </div>
                   <div className="flex items-center space-x-2 sm:space-x-3">
