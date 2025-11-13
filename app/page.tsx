@@ -185,7 +185,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       icon: (
         <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "/resume.pdf",
+      href: "/ManushwiResume.pdf",
     },
     {
       title: "Leetcode",
@@ -340,7 +340,7 @@ const Portfolio: React.FC = () => {
     },
     { icon: Github, href: "https://github.com/manushwi", label: "GitHub" },
     { icon: Code, href: "https://leetcode.com/u/Manushwi/", label: "Leetcode" },
-    { icon: FileText, href: "/resume.pdf", label: "Resume", download: true },
+    { icon: FileText, href: "/ManushwiResume.pdf", label: "Resume", download: true },
   ];
 
   const projects: ProjectCardProps[] = [
