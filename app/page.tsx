@@ -219,8 +219,10 @@ type PaperDocumentProps = {
 };
 
 const PaperDocument: React.FC<PaperDocumentProps> = ({ children }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="min-h-screen p-4 sm:p-6 lg:p-8 flex justify-center"
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8 flex justify-center overflow-x-hidden"
+
       style={{
         backgroundColor: '#0f3a2e', // dark green board
         backgroundImage:
@@ -257,6 +259,45 @@ const PaperDocument: React.FC<PaperDocumentProps> = ({ children }) => {
               }}
             />
           </div>
+{/* Floating Buttons inside the paper section (mobile only) */}
+<div className="absolute top-4 right-4 z-40 flex flex-col items-end gap-3 md:hidden">
+  {/* Menu Button */}
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className="p-3 rounded-full shadow-md bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 backdrop-blur-md hover:scale-105 transition-all duration-200"
+    aria-label="Toggle menu"
+  >
+    {menuOpen ? (
+      <X size={22} className="text-gray-800 dark:text-gray-200" />
+    ) : (
+      <Menu size={22} className="text-gray-800 dark:text-gray-200" />
+    )}
+  </button>
+
+  {/* Theme Toggle Button */}
+  <ThemeToggleButton />
+</div>
+
+{/* Floating Dropdown Menu inside the paper (mobile only) */}
+{menuOpen && (
+  <div className="absolute top-16 right-4 w-48 bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl backdrop-blur-md animate-fadeIn z-30 md:hidden">
+    <nav className="flex flex-col p-3 space-y-2">
+      {links.map((link, index) => (
+        <a
+          key={index}
+          href={link.href}
+          onClick={() => setMenuOpen(false)}
+          className="flex items-center gap-2 px-2 py-2 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-md hover:bg-emerald-100/80 dark:hover:bg-emerald-800/40 transition-all"
+        >
+          {link.icon}
+          <span>{link.title}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+)}
+
+
 
           {/* Hole Punches - Responsive */}
           <div className="absolute left-2 sm:left-4 lg:left-8 top-0 bottom-0 flex flex-col justify-start pt-8 sm:pt-12 space-y-2 sm:space-y-4 lg:space-y-6">
@@ -288,6 +329,8 @@ const PaperDocument: React.FC<PaperDocumentProps> = ({ children }) => {
 // Portfolio Component
 // ----------------------
 const Portfolio: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const socialLinks = [
     { icon: Twitter, href: "https://x.com/Manushwi", label: "Twitter" },
     {
@@ -357,14 +400,51 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* <Navigation /> */}
 
-       <div className="fixed z-100 w-full -bottom-100 flex items-start justify-center h-[32rem] py-0">
-      <FloatingDock
-        mobileClassName="translate-y-20"
-        items={links}
-      />
-    </div>
+{/* Floating Dropdown Menu */}
+{menuOpen && (
+  <div className="fixed top-16 right-4 w-48 z-40 bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl backdrop-blur-md animate-fadeIn">
+    <nav className="flex flex-col p-3 space-y-2">
+      {links.map((link, index) => (
+        <a
+          key={index}
+          href={link.href}
+          onClick={() => setMenuOpen(false)}
+          className="flex items-center gap-2 px-2 py-2 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-md hover:bg-emerald-100/80 dark:hover:bg-emerald-800/40 transition-all"
+        >
+          {link.icon}
+          <span>{link.title}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+)}
+
+
+{/* Mobile Menu Dropdown */}
+{menuOpen && (
+  <div className="md:hidden fixed top-[56px] left-0 w-full z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-gray-200 dark:border-gray-700 animate-fadeIn">
+    <nav className="flex flex-col p-4 space-y-3">
+      {links.map((link, index) => (
+        <a
+          key={index}
+          href={link.href}
+          className="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+          onClick={() => setMenuOpen(false)}
+        >
+          {link.icon}
+          <span>{link.title}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+)}
+
+{/* Desktop Floating Dock */}
+<div className="hidden md:flex fixed bottom-0 left-0 w-full z-50 items-start justify-center h-[8rem] py-4">
+  <FloatingDock mobileClassName="translate-y-20" items={links} />
+</div>
+
 
 
       <PaperDocument>
