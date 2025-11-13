@@ -164,52 +164,47 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 };
 
 
-  const links = [
-    {
-      title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#home",
-    },
- 
-    {
-      title: "Projects",
-      icon: (
-        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#projects",
-    },
-    {
-      title: "Resume",
-      icon: (
-        <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "/ManushwiResume.pdf",
-    },
-    {
-      title: "Leetcode",
-      icon: (
-        <Code className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "https://leetcode.com/u/Manushwi/",
-    },
- 
-    {
-      title: "Twitter",
-      icon: (
-        <Twitter className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "https://x.com/Manushwi",
-    },
-    {
-      title: "GitHub",
-      icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "https://github.com/manushwi",
-    },
-  ];
+const links = [
+  {
+    title: "Home",
+    icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#home",
+  },
+  {
+    title: "Projects",
+    icon: <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "#projects",
+  },
+  {
+    title: "Resume",
+    icon: <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "/ManushwiResume.pdf",
+  },
+
+  // 🌗 Theme toggle button becomes a real dock item
+  {
+    title: "Theme",
+    icon: <ThemeToggleButton />, // your component
+    href: "#",  // custom flag to detect it later
+  },
+
+  {
+    title: "Leetcode",
+    icon: <Code className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "https://leetcode.com/u/Manushwi/",
+  },
+  {
+    title: "Twitter",
+    icon: <Twitter className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "https://x.com/Manushwi",
+  },
+  {
+    title: "GitHub",
+    icon: <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    href: "https://github.com/manushwi",
+  },
+];
+
 
 // ----------------------
 // Paper Document Wrapper
