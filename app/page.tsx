@@ -24,73 +24,20 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import {
+  IconBrandGithub,
+  IconBrandX,
+  IconExchange,
+  IconHome,
+  IconNewSection,
+  IconTerminal2,
+} from "@tabler/icons-react";
 import FlipLink from "@/components/ui/text-effect-flipper";
 import { CardCarousel } from "@/components/ui/card-carousel";
 import { TextScroll } from "@/components/ui/text-scroll";
 import Image from "next/image";
 import ThemeToggleButton from "@/components/ui/theme-toggle-button";
-
-// ----------------------
-// Navigation
-// ----------------------
-const Navigation: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
-  };
-
-  const navItems = ["home", "projects", "skills"];
-
-  return (
-    <>
-      {/* Desktop Navigation */}
-      <nav className="fixed top-4 right-4 z-50 hidden md:block">
-        <div className="flex flex-col items-center space-y-2">
-          {navItems.map((section) => (
-            <button
-              key={section}
-              onClick={() => scrollToSection(section)}
-              className="px-3 py-2 rounded-lg text-sm font-medium bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 backdrop-blur-sm transition-all duration-200"
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </button>
-          ))}
-          <ThemeToggleButton showLabel variant="circle" start="top-right" />
-        </div>
-      </nav>
-
-      {/* Mobile Navigation */}
-      <nav className="fixed top-4 right-4 z-50 md:hidden">
-        <div className="flex items-center space-x-2">
-          <ThemeToggleButton showLabel={false} variant="circle" start="top-right" />
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-lg bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 backdrop-blur-sm"
-          >
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="absolute top-full right-0 mt-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-lg p-2 min-w-[120px]">
-            {navItems.map((section) => (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className="block w-full text-left px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 rounded-md transition-all duration-200"
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </button>
-            ))}
-          </div>
-        )}
-      </nav>
-    </>
-  );
-};
+import { FloatingDock } from "@/components/ui/floating-dock";
 
 // ----------------------
 // Profile Card
@@ -99,7 +46,7 @@ const ProfileCard: React.FC = () => {
   return (
     <div className="relative flex justify-center lg:justify-end">
       
-      <div className="bg-white scale-100 sm:scale-110 lg:scale-150 relative lg:top-1/2 dark:bg-gray-700 p-3 rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+      <div className="bg-white/50 scale-100 sm:scale-110 lg:scale-150 relative lg:top-1/2 dark:bg-gray-700 p-3 rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
         <div className="w-32 h-40 sm:w-40 sm:h-48 lg:w-48 lg:h-56 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-500 rounded flex items-center justify-center">
           <div className="w-full h-full bg-gray-400 dark:bg-gray-500 flex items-center justify-center text-white text-xs">
             <Image
@@ -216,6 +163,54 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
+
+  const links = [
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#home",
+    },
+ 
+    {
+      title: "Projects",
+      icon: (
+        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#projects",
+    },
+    {
+      title: "Resume",
+      icon: (
+        <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/resume.pdf",
+    },
+    {
+      title: "Leetcode",
+      icon: (
+        <Code className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://leetcode.com/u/Manushwi/",
+    },
+ 
+    {
+      title: "Twitter",
+      icon: (
+        <Twitter className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://x.com/Manushwi",
+    },
+    {
+      title: "GitHub",
+      icon: (
+        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://github.com/manushwi",
+    },
+  ];
+
 // ----------------------
 // Paper Document Wrapper
 // ----------------------
@@ -225,18 +220,32 @@ type PaperDocumentProps = {
 
 const PaperDocument: React.FC<PaperDocumentProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 sm:p-6 lg:p-8 flex justify-center">
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8 flex justify-center"
+      style={{
+        backgroundColor: '#0f3a2e', // dark green board
+        backgroundImage:
+          'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
+        backgroundSize: '40px 40px',
+      }}>
       <div className="relative max-w-4xl w-full">
-        {/* Paper Clips - Hidden on mobile */}
-        <div className="hidden sm:block absolute -top-4 left-20 z-20">
-          <div className="w-12 h-6 sm:w-16 sm:h-8 bg-gradient-to-r from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 rounded-full shadow-lg transform -rotate-12"></div>
-        </div>
-        <div className="hidden sm:block absolute -top-4 right-20 z-20">
-          <div className="w-12 h-6 sm:w-16 sm:h-8 bg-gradient-to-r from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 rounded-full shadow-lg transform rotate-12"></div>
-        </div>
+
+<div className="hidden sm:block absolute -top-4 left-32 z-20 w-24 h-8 bg-yellow-100/40 dark:bg-yellow-200/30 shadow-md transform -rotate-3"></div>
+        <div className="hidden sm:block absolute top-2 -right-10 z-20 w-24 h-8 bg-yellow-100/40 dark:bg-yellow-200/30 shadow-md transform rotate-45"></div>
+
+
+<div className="hidden sm:block absolute top-80 -left-10 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
+        <div className="hidden sm:block absolute top-80 -right-13 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
+
+        <div className="hidden sm:block absolute bottom-80 -left-10 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
+        <div className="hidden sm:block absolute bottom-200 -right-13 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
+
+
+        <div className="hidden sm:block absolute bottom-80 -left-10 z-20 w-24 h-8 bg-yellow-100/40 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
+        <div className="hidden sm:block absolute bottom-400 -right-13 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
+
 
         {/* Main Paper */}
-        <div className="relative bg-white dark:bg-gray-800 shadow-2xl">
+        <div className="relative bg-white/80 dark:bg-gray-800 shadow-2xl">
           {/* Dotted Background */}
           <div className="absolute inset-0 opacity-10 sm:opacity-20 dark:opacity-10">
             <div
@@ -302,6 +311,15 @@ const Portfolio: React.FC = () => {
       href: "https://manime-manushwi.netlify.app/",
     },
     {
+      title: "Vibe-a-thon",
+      description:
+        "Webiste for the AI based vibe coding hackathon",
+      tech: ["React", "Tailwind", "GSAP"],
+      status: "Live",
+      image: "./vibe.png",
+      href: "https://codezy-vibeathon.vercel.app/",
+    },
+    {
       title: "AUITS",
       description: "A ful fledge webpage for managing customers and admin.",
       tech: ["React", "Tailwind"],
@@ -328,6 +346,8 @@ const Portfolio: React.FC = () => {
     },
   ];
 
+
+  
   const skills = [
     { category: "Frontend", skills: ["React", "Tailwind CSS"] },
     { category: "Backend", skills: ["Node.js", "MongoDB", "Express.js"] },
@@ -337,7 +357,15 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
+      {/* <Navigation /> */}
+
+       <div className="fixed z-100 w-full -bottom-100 flex items-start justify-center h-[32rem] py-0">
+      <FloatingDock
+        mobileClassName="translate-y-20"
+        items={links}
+      />
+    </div>
+
 
       <PaperDocument>
         {/* Hero */}
@@ -434,7 +462,7 @@ const Portfolio: React.FC = () => {
             </div>
             
             {/* Desktop: Carousel layout */}
-            <div className="hidden md:block w-full">
+            <div className="hidden md:block w-full bg">
               <CardCarousel
                 cards={projects.map((project, index) => (
                   <ProjectCard key={index} {...project} />
@@ -448,7 +476,7 @@ const Portfolio: React.FC = () => {
         </section>
 
         {/* Education */}
-        <section className="mb-12 sm:mb-16">
+        <section id="education" className="mb-12 sm:mb-16">
           <div className="border-t border-gray-300 dark:border-gray-600 pt-6 sm:pt-8">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6 sm:mb-8">
               EDUCATION
