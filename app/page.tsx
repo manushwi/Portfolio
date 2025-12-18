@@ -178,7 +178,7 @@ const links = [
   {
     title: "Resume",
     icon: <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "/ManushwiResume.pdf",
+    href: "/Manushwi.pdf",
   },
 
   // 🌗 Theme toggle button becomes a real dock item
