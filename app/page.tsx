@@ -335,7 +335,7 @@ const Portfolio: React.FC = () => {
     },
     { icon: Github, href: "https://github.com/manushwi", label: "GitHub" },
     { icon: Code, href: "https://leetcode.com/u/Manushwi/", label: "Leetcode" },
-    { icon: FileText, href: "/ManushwiResume.pdf", label: "Resume", download: true },
+    { icon: FileText, href: "/Manushwi.pdf", label: "Resume", download: true },
   ];
 
   const projects: ProjectCardProps[] = [
