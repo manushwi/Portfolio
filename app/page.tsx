@@ -533,24 +533,21 @@ const Portfolio: React.FC = () => {
 
 
         <section id="education" className="mb-12 sm:mb-16">
-          <div className="border-t border-gray-300 dark:border-gray-600 pt-6 sm:pt-8">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6 sm:mb-8">
-              FREELANCE PROJECTS
-            </h2>
+  <div className="border-t border-gray-300 dark:border-gray-600 pt-6 sm:pt-8">
+    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6 sm:mb-8">
+      Freelance Projects
+    </h2>
 
-            <div className="bg-gray-200 dark:bg-gray-700 text-black dark:text-gray-100 p-4 sm:p-6 rounded-lg">
-              <div className="space-y-3 sm:space-y-4">
-                <div>
-                  <div className="hidden md:block w-full bg">
-                    {freelanceProjects.map((project, index) => (
-                      <ProjectCard key={index} {...project} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+    <div className="bg-gray-200 dark:bg-gray-700 text-black dark:text-gray-100 p-4 sm:p-6 rounded-lg">
+      <div className="flex flex-col gap-4 sm:gap-6">
+        {freelanceProjects.map((project, index) => (
+          <ProjectCard key={index} {...project} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
 
         <section id="projects" className="mb-12 sm:mb-16">
           <div className="border-t border-gray-300 dark:border-gray-600 pt-2">
