@@ -45,7 +45,6 @@ import { FloatingDock } from "@/components/ui/floating-dock";
 const ProfileCard: React.FC = () => {
   return (
     <div className="relative flex justify-center lg:justify-end">
-      
       <div className="bg-white/50 scale-100 sm:scale-110 lg:scale-150 relative lg:top-1/2 dark:bg-gray-700 p-3 rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
         <div className="w-32 h-40 sm:w-40 sm:h-48 lg:w-48 lg:h-56 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-500 rounded flex items-center justify-center">
           <div className="w-full h-full bg-gray-400 dark:bg-gray-500 flex items-center justify-center text-white text-xs">
@@ -68,7 +67,7 @@ const ProfileCard: React.FC = () => {
           </p>
           <div className="flex justify-end mt-2">
             <span className="text-sm sm:text-lg font-bold text-gray-800 dark:text-white">
-              2025
+              {currentYear}
             </span>
           </div>
         </div>
@@ -76,6 +75,9 @@ const ProfileCard: React.FC = () => {
     </div>
   );
 };
+
+
+const currentYear = new Date().getFullYear();
 
 // ----------------------
 // Project Card
@@ -108,11 +110,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </h3>
 
         {/* Image */}
-        <div className="w-full h-40 sm:h-48 md:h-56 lg:h-64 bg-gray-200 dark:bg-gray-600 rounded-lg overflow-hidden mb-3 sm:mb-4 flex-shrink-0">
+        <div className="w-full h-40 sm:h-48 md:h-56 lg:h-64  bg-gray-200 dark:bg-gray-600 rounded-lg overflow-hidden mb-3 sm:mb-4 flex-shrink-0">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover rounded-lg"
+            className="h-full object-cover hover:scale-120 transition-all duration-300 rounded-lg"
           />
         </div>
 
@@ -140,17 +142,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               status === "Live"
                 ? "bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200"
                 : status === "In Progress"
-                ? "bg-yellow-200 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200"
-                : status === "Beta"
-                ? "bg-blue-200 text-blue-800 dark:bg-blue-800 dark:text-blue-200"
-                : "bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200"
+                  ? "bg-yellow-200 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200"
+                  : status === "Beta"
+                    ? "bg-blue-200 text-blue-800 dark:bg-blue-800 dark:text-blue-200"
+                    : "bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200"
             }`}
           >
             {status}
           </span>
 
           {link && (
-            <a href={link} target="_blank" rel="noopener noreferrer" className="ml-2 flex-shrink-0">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 flex-shrink-0"
+            >
               <ExternalLink
                 size={14}
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors sm:w-[16px] sm:h-[16px] md:w-[18px] md:h-[18px]"
@@ -163,21 +170,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
-
 const links = [
   {
     title: "Home",
-    icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    icon: (
+      <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    ),
     href: "#home",
   },
   {
     title: "Projects",
-    icon: <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    icon: (
+      <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    ),
     href: "#projects",
   },
   {
     title: "Resume",
-    icon: <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    icon: (
+      <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    ),
     href: "/Manushwi.pdf",
   },
 
@@ -185,26 +197,31 @@ const links = [
   {
     title: "Theme",
     icon: <ThemeToggleButton />, // your component
-    href: "#",  // custom flag to detect it later
+    href: "#", // custom flag to detect it later
   },
 
   {
     title: "Leetcode",
-    icon: <Code className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    icon: (
+      <Code className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    ),
     href: "https://leetcode.com/u/Manushwi/",
   },
   {
     title: "Twitter",
-    icon: <Twitter className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    icon: (
+      <Twitter className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    ),
     href: "https://x.com/Manushwi",
   },
   {
     title: "GitHub",
-    icon: <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+    icon: (
+      <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    ),
     href: "https://github.com/manushwi",
   },
 ];
-
 
 // ----------------------
 // Paper Document Wrapper
@@ -216,30 +233,27 @@ type PaperDocumentProps = {
 const PaperDocument: React.FC<PaperDocumentProps> = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="min-h-screen p-4 sm:p-6 lg:p-8 flex justify-center overflow-x-hidden"
-
+    <div
+      className="min-h-screen p-4 sm:p-6 lg:p-8 flex justify-center overflow-x-hidden"
       style={{
-        backgroundColor: '#0f3a2e', // dark green board
+        backgroundColor: "#0f3a2e", // dark green board
         backgroundImage:
-          'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
-        backgroundSize: '40px 40px',
-      }}>
+          "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+        backgroundSize: "40px 40px",
+      }}
+    >
       <div className="relative max-w-4xl w-full">
-
-<div className="hidden sm:block absolute -top-4 left-32 z-20 w-24 h-8 bg-yellow-100/40 dark:bg-yellow-200/30 shadow-md transform -rotate-3"></div>
+        <div className="hidden sm:block absolute -top-4 left-32 z-20 w-24 h-8 bg-yellow-100/40 dark:bg-yellow-200/30 shadow-md transform -rotate-3"></div>
         <div className="hidden sm:block absolute top-2 -right-10 z-20 w-24 h-8 bg-yellow-100/40 dark:bg-yellow-200/30 shadow-md transform rotate-45"></div>
 
-
-<div className="hidden sm:block absolute top-80 -left-10 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
+        <div className="hidden sm:block absolute top-80 -left-10 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
         <div className="hidden sm:block absolute top-80 -right-13 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
 
         <div className="hidden sm:block absolute bottom-80 -left-10 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
         <div className="hidden sm:block absolute bottom-200 -right-13 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
 
-
         <div className="hidden sm:block absolute bottom-80 -left-10 z-20 w-24 h-8 bg-yellow-100/40 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
         <div className="hidden sm:block absolute bottom-400 -right-13 z-20 w-24 h-8 bg-yellow-100/80 dark:bg-yellow-200/30 shadow-md transform -rotate-90"></div>
-
 
         {/* Main Paper */}
         <div className="relative bg-white/80 dark:bg-gray-800 shadow-2xl">
@@ -254,45 +268,43 @@ const PaperDocument: React.FC<PaperDocumentProps> = ({ children }) => {
               }}
             />
           </div>
-{/* Floating Buttons inside the paper section (mobile only) */}
-<div className="absolute top-4 right-4 z-40 flex flex-col items-end gap-3 md:hidden">
-  {/* Menu Button */}
-  <button
-    onClick={() => setMenuOpen(!menuOpen)}
-    className="p-3 rounded-full shadow-md bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 backdrop-blur-md hover:scale-105 transition-all duration-200"
-    aria-label="Toggle menu"
-  >
-    {menuOpen ? (
-      <X size={22} className="text-gray-800 dark:text-gray-200" />
-    ) : (
-      <Menu size={22} className="text-gray-800 dark:text-gray-200" />
-    )}
-  </button>
+          {/* Floating Buttons inside the paper section (mobile only) */}
+          <div className="absolute top-4 right-4 z-40 flex flex-col items-end gap-3 md:hidden">
+            {/* Menu Button */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="p-3 rounded-full shadow-md bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 backdrop-blur-md hover:scale-105 transition-all duration-200"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? (
+                <X size={22} className="text-gray-800 dark:text-gray-200" />
+              ) : (
+                <Menu size={22} className="text-gray-800 dark:text-gray-200" />
+              )}
+            </button>
 
-  {/* Theme Toggle Button */}
-  <ThemeToggleButton />
-</div>
+            {/* Theme Toggle Button */}
+            <ThemeToggleButton />
+          </div>
 
-{/* Floating Dropdown Menu inside the paper (mobile only) */}
-{menuOpen && (
-  <div className="absolute top-16 right-4 w-48 bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl backdrop-blur-md animate-fadeIn z-30 md:hidden">
-    <nav className="flex flex-col p-3 space-y-2">
-      {links.map((link, index) => (
-        <a
-          key={index}
-          href={link.href}
-          onClick={() => setMenuOpen(false)}
-          className="flex items-center gap-2 px-2 py-2 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-md hover:bg-emerald-100/80 dark:hover:bg-emerald-800/40 transition-all"
-        >
-          {link.icon}
-          <span>{link.title}</span>
-        </a>
-      ))}
-    </nav>
-  </div>
-)}
-
-
+          {/* Floating Dropdown Menu inside the paper (mobile only) */}
+          {menuOpen && (
+            <div className="absolute top-16 right-4 w-48 bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl backdrop-blur-md animate-fadeIn z-30 md:hidden">
+              <nav className="flex flex-col p-3 space-y-2">
+                {links.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center gap-2 px-2 py-2 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-md hover:bg-emerald-100/80 dark:hover:bg-emerald-800/40 transition-all"
+                  >
+                    {link.icon}
+                    <span>{link.title}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+          )}
 
           {/* Hole Punches - Responsive */}
           <div className="absolute left-2 sm:left-4 lg:left-8 top-0 bottom-0 flex flex-col justify-start pt-8 sm:pt-12 space-y-2 sm:space-y-4 lg:space-y-6">
@@ -338,6 +350,9 @@ const Portfolio: React.FC = () => {
     { icon: FileText, href: "/Manushwi.pdf", label: "Resume", download: true },
   ];
 
+
+
+
   const projects: ProjectCardProps[] = [
     {
       title: "Manime",
@@ -350,8 +365,7 @@ const Portfolio: React.FC = () => {
     },
     {
       title: "Vibe-a-thon",
-      description:
-        "Webiste for the AI based vibe coding hackathon",
+      description: "Webiste for the AI based vibe coding hackathon",
       tech: ["React", "Tailwind", "GSAP"],
       status: "Live",
       image: "./vibe.png",
@@ -383,9 +397,18 @@ const Portfolio: React.FC = () => {
       href: "#",
     },
   ];
+  const freelanceProjects: ProjectCardProps[] = [
+    {
+      title: "ACS Services",
+      description:
+        "Avtaar Cleaning Solution is a modern service based web project designed to showcase professional cleaning services with seamless user interaction and efficient service booking.",
+      tech: ["React", "Tailwind", "Framer Motion", "Supabase", "Resend"],
+      status: "Live",
+      image: "./acs2.png",
+      href: "https://acs-services-weph.vercel.app/",
+    },
+  ];
 
-
-  
   const skills = [
     { category: "Frontend", skills: ["React", "Tailwind CSS"] },
     { category: "Backend", skills: ["Node.js", "MongoDB", "Express.js"] },
@@ -395,52 +418,48 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Floating Dropdown Menu */}
+      {menuOpen && (
+        <div className="fixed top-16 right-4 w-48 z-40 bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl backdrop-blur-md animate-fadeIn">
+          <nav className="flex flex-col p-3 space-y-2">
+            {links.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 px-2 py-2 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-md hover:bg-emerald-100/80 dark:hover:bg-emerald-800/40 transition-all"
+              >
+                {link.icon}
+                <span>{link.title}</span>
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
 
-{/* Floating Dropdown Menu */}
-{menuOpen && (
-  <div className="fixed top-16 right-4 w-48 z-40 bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl backdrop-blur-md animate-fadeIn">
-    <nav className="flex flex-col p-3 space-y-2">
-      {links.map((link, index) => (
-        <a
-          key={index}
-          href={link.href}
-          onClick={() => setMenuOpen(false)}
-          className="flex items-center gap-2 px-2 py-2 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-md hover:bg-emerald-100/80 dark:hover:bg-emerald-800/40 transition-all"
-        >
-          {link.icon}
-          <span>{link.title}</span>
-        </a>
-      ))}
-    </nav>
-  </div>
-)}
+      {/* Mobile Menu Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden fixed top-[56px] left-0 w-full z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-gray-200 dark:border-gray-700 animate-fadeIn">
+          <nav className="flex flex-col p-4 space-y-3">
+            {links.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.icon}
+                <span>{link.title}</span>
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
 
-
-{/* Mobile Menu Dropdown */}
-{menuOpen && (
-  <div className="md:hidden fixed top-[56px] left-0 w-full z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-gray-200 dark:border-gray-700 animate-fadeIn">
-    <nav className="flex flex-col p-4 space-y-3">
-      {links.map((link, index) => (
-        <a
-          key={index}
-          href={link.href}
-          className="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-          onClick={() => setMenuOpen(false)}
-        >
-          {link.icon}
-          <span>{link.title}</span>
-        </a>
-      ))}
-    </nav>
-  </div>
-)}
-
-{/* Desktop Floating Dock */}
-<div className="hidden md:flex fixed bottom-0 left-0 w-full z-50 items-start justify-center h-[8rem] py-4">
-  <FloatingDock mobileClassName="translate-y-20" items={links} />
-</div>
-
-
+      {/* Desktop Floating Dock */}
+      <div className="hidden md:flex fixed bottom-0 left-0 w-full z-50 items-start justify-center h-[8rem] py-4">
+        <FloatingDock mobileClassName="translate-y-20" items={links} />
+      </div>
 
       <PaperDocument>
         {/* Hero */}
@@ -459,8 +478,8 @@ const Portfolio: React.FC = () => {
               <div className="space-y-3 sm:space-y-4 text-gray-800 dark:text-gray-300">
                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
                   I&apos;m just a guy who codes like he's running out of
-                  time—because maybe I am. No grand destiny, no chosen
-                  one—just me, a deadline, and the will to win.
+                  time because maybe I am. No grand destiny, no chosen one just
+                  me, a deadline, and the will to win.
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
                   Fullstack by skill, obsessed with making frontends look way
@@ -473,13 +492,13 @@ const Portfolio: React.FC = () => {
                   </span>
                 </p>
               </div>
-              
+
               {/* Profile Card - Mobile positioned here */}
               <div className="flex justify-center lg:hidden mt-8">
                 <ProfileCard />
               </div>
             </div>
-            
+
             {/* Profile Card - Desktop positioned here */}
             <div className="hidden lg:flex justify-center">
               <ProfileCard />
@@ -511,6 +530,28 @@ const Portfolio: React.FC = () => {
         </section>
 
         {/* Projects */}
+
+
+        <section id="education" className="mb-12 sm:mb-16">
+          <div className="border-t border-gray-300 dark:border-gray-600 pt-6 sm:pt-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6 sm:mb-8">
+              FREELANCE PROJECTS
+            </h2>
+
+            <div className="bg-gray-200 dark:bg-gray-700 text-black dark:text-gray-100 p-4 sm:p-6 rounded-lg">
+              <div className="space-y-3 sm:space-y-4">
+                <div>
+                  <div className="hidden md:block w-full bg">
+                    {freelanceProjects.map((project, index) => (
+                      <ProjectCard key={index} {...project} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="projects" className="mb-12 sm:mb-16">
           <div className="border-t border-gray-300 dark:border-gray-600 pt-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 gap-4">
@@ -526,7 +567,7 @@ const Portfolio: React.FC = () => {
                 CHECK OUT MORE INTERESTING PROJECTS
               </a>
             </div>
-            
+
             {/* Mobile: Simple grid layout */}
             <div className="block md:hidden">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -535,7 +576,7 @@ const Portfolio: React.FC = () => {
                 ))}
               </div>
             </div>
-            
+
             {/* Desktop: Carousel layout */}
             <div className="hidden md:block w-full bg">
               <CardCarousel
@@ -569,11 +610,13 @@ const Portfolio: React.FC = () => {
                 </div>
 
                 <div className="border-t border-gray-700 dark:border-gray-600 pt-3 sm:pt-4">
-                  <h4 className="text-sm sm:text-base font-medium mb-2">Key Courses:</h4>
+                  <h4 className="text-sm sm:text-base font-medium mb-2">
+                    Key Courses:
+                  </h4>
                   <p className="text-gray-950 dark:text-gray-400 text-xs sm:text-sm">
-                    Data Structures and Algorithms • Web Development •
-                    Database Management • Machine Learning • Software
-                    Engineering • Statistics
+                    Data Structures and Algorithms • Web Development • Database
+                    Management • Machine Learning • Software Engineering •
+                    Statistics
                   </p>
                 </div>
               </div>
@@ -668,8 +711,8 @@ const Portfolio: React.FC = () => {
               <div className="bg-white/50 dark:bg-gray-700/50 border-2 border-gray-300 dark:border-gray-600 p-3 sm:p-4">
                 <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
                   Always open to discussing new opportunities, collaborations,
-                  or just having a chat about tech, skateboarding, or any of
-                  my hundred hobbies. Drop me a line!
+                  or just having a chat about tech, skateboarding, or any of my
+                  hundred hobbies. Drop me a line!
                 </p>
               </div>
             </div>
