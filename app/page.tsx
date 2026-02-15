@@ -405,7 +405,7 @@ const Portfolio: React.FC = () => {
       tech: ["React", "Tailwind", "Framer Motion", "Supabase", "Resend"],
       status: "Live",
       image: "./acs2.png",
-      href: "https://acs-services-weph.vercel.app/",
+      href: "https://avtaarcleaningsolutions.in/",
     },
   ];
 
