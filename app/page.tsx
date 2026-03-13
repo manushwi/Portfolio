@@ -190,7 +190,7 @@ const links = [
     icon: (
       <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />
     ),
-    href: "/Manushwi.pdf",
+    href: "/Manushwi_Resume_final.pdf",
   },
 
   // 🌗 Theme toggle button becomes a real dock item
@@ -347,7 +347,7 @@ const Portfolio: React.FC = () => {
     },
     { icon: Github, href: "https://github.com/manushwi", label: "GitHub" },
     { icon: Code, href: "https://leetcode.com/u/Manushwi/", label: "Leetcode" },
-    { icon: FileText, href: "/Manushwi.pdf", label: "Resume", download: true },
+    { icon: FileText, href: "/Manushwi_Resume_final.pdf", label: "Resume", download: true },
   ];
 
 
@@ -392,9 +392,9 @@ const Portfolio: React.FC = () => {
       description:
         "An AI powered tool helps to recycle, reuse and donate items",
       tech: ["HTML5", "CSS3", "Express.js"],
-      status: "In Progress",
+      status: "Live",
       image: "/card4.png",
-      href: "#",
+      href: "https://ecoloop-unwj.onrender.com/",
     },
   ];
   const freelanceProjects: ProjectCardProps[] = [
@@ -411,7 +411,7 @@ const Portfolio: React.FC = () => {
 
   const skills = [
     { category: "Frontend", skills: ["React", "Tailwind CSS"] },
-    { category: "Backend", skills: ["Node.js", "MongoDB", "Express.js"] },
+    { category: "Backend", skills: ["Node.js", "MongoDB", "NextJS", "Express.js"] },
     { category: "Tools", skills: ["Git", "Figma", "Photoshop"] },
     { category: "Other", skills: ["UI/UX Design", "Chess", "Sketching"] },
   ];
