@@ -76,7 +76,6 @@ const ProfileCard: React.FC = () => {
   );
 };
 
-
 const currentYear = new Date().getFullYear();
 
 // ----------------------
@@ -190,7 +189,7 @@ const links = [
     icon: (
       <FileText className="h-full w-full text-neutral-500 dark:text-neutral-300" />
     ),
-    href: "/Manushwi_Resume_final.pdf",
+    href: "/Manushwi Raj Bhardwaj Resume.pdf",
   },
 
   // 🌗 Theme toggle button becomes a real dock item
@@ -347,13 +346,24 @@ const Portfolio: React.FC = () => {
     },
     { icon: Github, href: "https://github.com/manushwi", label: "GitHub" },
     { icon: Code, href: "https://leetcode.com/u/Manushwi/", label: "Leetcode" },
-    { icon: FileText, href: "/Manushwi_Resume_final.pdf", label: "Resume", download: true },
+    {
+      icon: FileText,
+      href: "/Manushwi Raj Bhardwaj Resume.pdf",
+      label: "Resume",
+      download: true,
+    },
   ];
 
-
-
-
   const projects: ProjectCardProps[] = [
+    {
+      title: "PathFlow",
+      description:
+        "AI-Powered Open Source Contribution Platform",
+      tech: ["FastAPI", "Next.js", "Celery", "Redis", "Qdrant", "PostgreSQL", "OpenRouter", "Monaco Editor"],
+      status: "Live",
+      image: "./card5.png",
+      href: "https://pathflow-manu.vercel.app/",
+    },
     {
       title: "Manime",
       description:
@@ -411,7 +421,10 @@ const Portfolio: React.FC = () => {
 
   const skills = [
     { category: "Frontend", skills: ["React", "Tailwind CSS"] },
-    { category: "Backend", skills: ["Node.js", "MongoDB", "NextJS", "Express.js"] },
+    {
+      category: "Backend",
+      skills: ["Node.js", "MongoDB", "NextJS", "Express.js"],
+    },
     { category: "Tools", skills: ["Git", "Figma", "Photoshop"] },
     { category: "Other", skills: ["UI/UX Design", "Chess", "Sketching"] },
   ];
@@ -477,9 +490,9 @@ const Portfolio: React.FC = () => {
 
               <div className="space-y-3 sm:space-y-4 text-gray-800 dark:text-gray-300">
                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                  I&apos;m just a guy who codes like he's running out of
-                  time because maybe I am. No grand destiny, no chosen one just
-                  me, a deadline, and the will to win.
+                  I&apos;m just a guy who codes like he's running out of time
+                  because maybe I am. No grand destiny, no chosen one just me, a
+                  deadline, and the will to win.
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
                   Fullstack by skill, obsessed with making frontends look way
@@ -531,23 +544,21 @@ const Portfolio: React.FC = () => {
 
         {/* Projects */}
 
-
         <section id="education" className="mb-12 sm:mb-16">
-  <div className="border-t border-gray-300 dark:border-gray-600 pt-6 sm:pt-8">
-    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6 sm:mb-8">
-      Freelance Projects
-    </h2>
+          <div className="border-t border-gray-300 dark:border-gray-600 pt-6 sm:pt-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6 sm:mb-8">
+              Freelance Projects
+            </h2>
 
-    <div className="bg-gray-200 dark:bg-gray-700 text-black dark:text-gray-100 p-4 sm:p-6 rounded-lg">
-      <div className="flex flex-col gap-4 sm:gap-6">
-        {freelanceProjects.map((project, index) => (
-          <ProjectCard key={index} {...project} />
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
+            <div className="bg-gray-200 dark:bg-gray-700 text-black dark:text-gray-100 p-4 sm:p-6 rounded-lg">
+              <div className="flex flex-col gap-4 sm:gap-6">
+                {freelanceProjects.map((project, index) => (
+                  <ProjectCard key={index} {...project} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section id="projects" className="mb-12 sm:mb-16">
           <div className="border-t border-gray-300 dark:border-gray-600 pt-2">
