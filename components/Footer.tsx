@@ -12,7 +12,6 @@ export function Footer() {
         </p>
 
         <div className="flex items-center gap-4">
-          <p className="text-xs text-muted">built with next.js</p>
           <div className="flex items-center gap-3">
             {SOCIALS.map((s) => (
               <a

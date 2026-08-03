@@ -36,6 +36,7 @@ export const PROJECTS: Project[] = [
     tags: ["React", "Tailwind", "GSAP"],
     href: "https://codezy-vibeathon.vercel.app/",
     image: "/vibe.png",
+    featured: true,
   },
   {
     name: "AUITS",
